@@ -648,6 +648,66 @@
   "status": "pending"
  },
  {
+  "id": "pswwwithomecom1030720htm",
+  "title": "OpenAI 首席科学家警告：AI 最早可能在 2027 年加速自身发展，奥尔特曼赞同为 AI 开发设限",
+  "link": "https://www.ithome.com/1/030/720.htm",
+  "cat": "ai-models",
+  "date": "2026-11-22",
+  "source": "IT之家",
+  "trust": "verified",
+  "weight": 3,
+  "desc": "<p data-vmark=\"050f\">IT之家 11 月 23 日消息，当地时间于 11 月 22 日，OpenAI 首席科学家雅库布 · 帕霍茨基（Jakub Pachocki）发文，提议 AI 企业应建立行业统一标准，对先进 AI 模型的开发设置共同限制，在研究人员具备更可靠的模型行为理解和监控能力之前，不应突破约定的发展门槛。</p><p data-vmark=\"6b75\">他认为，传统 AI 能力评测基准会随着技术进步迅速过时，而困惑度（Perplexity）可以作为衡量模型预训练进展的参考指标（困惑度用于衡量 AI 模型预测下一个文本 Token 的能力，数值越低，代表模型的预测能力越强）。</p><p data-vmark=\"e81e\">帕霍茨基还公布了 OpenAI 内部使用的部分模型评测数据：GPT-3.5 的对数困惑度约为 0.99，GPT-4 约为 0.91。当这一指标低于 0.8 时，OpenAI 观察到了模型在网络安全和数学领域出现新的能力；当指标达到约 0.76 时，模型开始在部分开放数学问题上取得突破性成果。</p><p data-vmark=\"aed9",
+  "status": "pending"
+ },
+ {
+  "id": "pswwwithomecom1030719htm",
+  "title": "古尔曼：苹果准备在明年 2 月至 3 月 iOS 27.4 周期中推出入门级 iPad、iPhone 18e 和全新 MacBook Neo",
+  "link": "https://www.ithome.com/1/030/719.htm",
+  "cat": "os",
+  "date": "2026-11-22",
+  "source": "IT之家",
+  "trust": "verified",
+  "weight": 3,
+  "desc": "<p data-vmark=\"5e40\">IT之家 11 月 23 日消息，彭博社记者马克 · 古尔曼昨晚发布了最新一期 Power On 新闻通讯，分析了苹果在 AI Agent 竞争中的处境，并披露了苹果 2027 年上半年的部分新品计划。</p><p data-vmark=\"8e6a\" style=\"text-align: center;\"><img src=\"https://img.ithome.com/newsuploadfiles/2026/11/eeb0a9af-ad39-4f6c-a8fa-cc47c55d95b5.png\" w=\"898\" h=\"1083\" data-mpos=\"2,0\" data-weibo=\"0\" data-marks=\"1931fd9d012eb6d1a95d9fb2d2603ec70455be0025b6339b4b95f6d2af17ca60753007f666547bf20ac3ca8292270ef0\" data-snap-from=\"%7B%22from%22%3A%22x%22%2C%22url%22%3A%22https%3A%2F",
+  "status": "pending"
+ },
+ {
+  "id": "pswwwithomecom1030717htm",
+  "title": "美国初创企业公布 AI 自研 CPU 架构 Frostbite，能效是传统处理器的 4.59 倍",
+  "link": "https://www.ithome.com/1/030/717.htm",
+  "cat": "os",
+  "date": "2026-11-22",
+  "source": "IT之家",
+  "trust": "verified",
+  "weight": 3,
+  "desc": "<p data-vmark=\"4f91\">IT之家 11 月 22 日消息，美国加利福尼亚州帕洛阿尔托的初创公司 Architect Labs 在一篇研究博客中宣布，其人工智能系统已经自主发现、设计并验证了一款名为 Frostbite 的通用 CPU。这款处理器采用全新的指令集，从底层开始重新设计，试图摆脱传统 CPU 的部分架构限制。</p><p style=\"text-align: center;\" data-vmark=\"8967\"><img src=\"https://img.ithome.com/newsuploadfiles/2026/11/d33e2bfd-739b-4bbc-abcf-95c44a003b24.jpg?x-bce-process=image/format,f_auto\" w=\"970\" h=\"546\" data-weibo=\"0\" data-vmark=\"b214\" class=\"no-alt-img\"></p><p data-vmark=\"b919\">在 25 项工作负载测试中，由 4 个计算单元组成的 Frostbite 集群，<strong>每瓦性能",
+  "status": "pending"
+ },
+ {
+  "id": "pswwwithomecom1030716htm",
+  "title": "研华 ASR-A505 单板计算机曝光，搭载英特尔 \"Nova Lake H\" 处理器",
+  "link": "https://www.ithome.com/1/030/716.htm",
+  "cat": "hardware-soc",
+  "date": "2026-11-22",
+  "source": "IT之家",
+  "trust": "verified",
+  "weight": 3,
+  "desc": "<p data-vmark=\"dfd8\">IT之家 11 月 22 日消息，根据研华 (Advantech) 泄露到网络上的一份演示文稿，该企业正在开发一款基于英特尔第 4 代酷睿 Ultra 处理器 \"Nova Lake H\" 的“四英寸级”单板计算机 (SBC) ASR-A505。</p><p data-vmark=\"44a6\" style=\"text-align: center;\"><img src=\"https://img.ithome.com/newsuploadfiles/2026/11/0844fef5-8a06-4782-b754-bd4ee5453b54.jpg\" w=\"1200\" h=\"900\" data-weibo=\"0\" data-vmark=\"fc5d\" class=\"no-alt-img\"></p><p data-vmark=\"4699\">该 SBC <strong>板载一颗 \"<em>8P+4E+4LE</em>\" 的 16 核心 16 线程 CPU</strong>，配备 18MB 的 LLC 缓存，基频 2.0GHz、睿频可达 4.8GHz；搭配最大频",
+  "status": "pending"
+ },
+ {
+  "id": "pswwwithomecom1030715htm",
+  "title": "Oracle：已确保履行与 OpenAI 合同全部所需资金",
+  "link": "https://www.ithome.com/1/030/715.htm",
+  "cat": "ai-models",
+  "date": "2026-11-22",
+  "source": "IT之家",
+  "trust": "verified",
+  "weight": 3,
+  "desc": "<p data-vmark=\"dfea\">IT之家 11 月 22 日消息，Oracle（甲骨文）当地时间本月 20 日表示，<strong>该企业已在本月初筹集到了履行与 OpenAI 交易的全部所需资金</strong>，与供应商进行的任何进一步私下讨论仅为补充选项。</p><p data-vmark=\"a0a0\" style=\"text-align: center;\"><img src=\"https://img.ithome.com/newsuploadfiles/2026/11/5484c5f8-414f-4b1a-b8a2-d2c006e8ecb2.jpg\" w=\"1440\" h=\"720\" data-weibo=\"0\" class=\"nowebp no-alt-img\"  data-vmark=\"a173\"></p><figcaption>▲ Abilene</figcaption><p data-vmark=\"0d12\">Oracle 称其与 OpenAI 在 AI 基础设施合作方面的进展迅速：<strong>位于美国得克萨斯州 Abilene 的园区已用于 GPT-6 ",
+  "status": "pending"
+ },
+ {
   "id": "pswwwithomecom1030523htm",
   "title": "韩国教育部认定今年高考共 111 起涉电子设备作弊：利用智能手机拍考卷等",
   "link": "https://www.ithome.com/1/030/523.htm",
