@@ -64,6 +64,16 @@ try {
   errs.push('front matter YAML 非法（跑 node scripts/fix-frontmatter.mjs 修复）\n' + out.trim());
 }
 
+// 校验页面脚本能否被 JS 引擎解析。
+// 站点是纯静态的：JS 错一个字整页白屏，而部署阶段完全静默通过。
+try {
+  const { execFileSync } = await import('node:child_process');
+  execFileSync('node', [join(ROOT, 'scripts', 'lint-page.mjs')], { stdio: 'pipe', encoding: 'utf8' });
+} catch (e) {
+  const out = (e.stdout || '') + (e.stderr || '');
+  errs.push('页面脚本解析失败（site/*.html 内嵌 JS）\n' + out.trim());
+}
+
 console.log('条目数: ' + arr.length);
 if (errs.length) { console.log('\n发现问题 ' + errs.length + ' 项:'); errs.forEach(x => console.log('  ✗ ' + x)); process.exitCode = 1; }
 else console.log('✓ 全部校验通过（seq/字段/文件存在性/front matter YAML）');
