@@ -5,11 +5,13 @@ date: 2025-10-23
 category: phones
 tags: [REDMI, K90, K90ProMax, Bose, 扬声器, 2.1声道, LHDC, 音质]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: both
 summary: K90 系列从这一代开始重视音质，全系 Sound by Bose 联合调音；Pro Max 配 2.1 立体声豪华三扬 + 背部独立扬声器，行业首次实现 2.1 声道体验
 source:
   - "我爱音频网 — https://www.52audio.com/archives/259013.html"
   - "快科技 — https://m.mydrivers.com/newsview/1082030.html"
-confidence: verified
 ---
 
 # REDMI K90 系列音质

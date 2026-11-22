@@ -5,11 +5,13 @@ date: 2026-11-12
 category: industry
 tags: [黄仁勋, NVIDIA, 辞职, 丑闻, ColetteKress, 英伟达]
 status: current
+sourceType: primary
+evidence: multi-source
+verifiedBy: both
 summary: 2026-11-12 北京时间晚间，黄仁勋辞去总裁、CEO 及董事会成员职务，即刻生效；CFO Colette Kress 出任临时 CEO；起因是第二起婚外情曝光
 source:
   - "新华网 — http://www2.xinhuanet.com/fortune/20261112/ef46236405e1452898f4d9b86608968c/c.html"
   - "SEC 8-K — https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm"
-confidence: verified
 ---
 
 # 黄仁勋辞去英伟达一切职务

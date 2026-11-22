@@ -72,6 +72,10 @@ for (const f of files) {
     summary: meta.summary || firstParagraph(body),
     tags: Array.isArray(meta.tags) ? meta.tags : (meta.tags ? [meta.tags] : []),
     status: meta.status || 'current',
+    sourceType: meta.sourceType || '',
+    evidence: meta.evidence || '',
+    verifiedBy: meta.verifiedBy || '',
+    datePrecision: meta.datePrecision || 'day',
     path: 'kb/' + rel,
     words: body.replace(/\s/g, '').length,
   });
@@ -106,7 +110,9 @@ await writeFile(join(ROOT, 'INDEX.md'), index.join('\n'), 'utf8');
 // ---- 第 2 层：INDEX.compact.json（一条一行摘要，供 AI 批量扫）----
 const compact = entries.map(e => ({
   id: e.id, seq: e.seq, cat: e.category, date: e.date,
-  title: e.title, summary: e.summary, status: e.status, path: e.path,
+  title: e.title, summary: e.summary, status: e.status,
+  sourceType: e.sourceType, evidence: e.evidence, verifiedBy: e.verifiedBy,
+  datePrecision: e.datePrecision, path: e.path,
 }));
 await writeFile(join(ROOT, 'INDEX.compact.json'), JSON.stringify(compact, null, 0), 'utf8');
 

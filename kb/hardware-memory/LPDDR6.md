@@ -5,10 +5,12 @@ date: 2024-07-01
 category: hardware-memory
 tags: [LPDDR6, JEDEC, 内存, 三星, 海力士, 长鑫]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: editor
 summary: JEDEC JESD209-6 起步 10.7Gbps 最高 14.4Gbps，24 位双子通道，2026 三星/海力士/长鑫均已量产
 source:
   - "JEDEC — https://www.jedec.org"
-confidence: verified
 ---
 
 # LPDDR6

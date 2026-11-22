@@ -5,11 +5,13 @@ date: 2026-05-22
 category: phones
 tags: [vivo, OPPO, 小米, 华为, X300Ultra, FindX9Ultra, 小米17Ultra, Mate80, Ultra, 影像旗舰]
 status: current
+sourceType: community
+evidence: multi-source
+verifiedBy: editor
 summary: vivo X300 Ultra 与 OPPO Find X9 Ultra 均用骁龙 8 Elite Gen 5、6.82 吋 144Hz；OPPO 7050mAh 胜续航，vivo 蔡司 2K 4500nits；小米17 Ultra 与华为 Mate80 RS 各自应战
 source:
   - "傑昇通信 — https://www.jyes.com.tw/news.php?act=view&id=14822"
   - "ePrice — https://www.eprice.com.hk/mobile/talk/102/227354/1"
-confidence: verified
 ---
 
 # 2026 华米OV Ultra 旗舰横评

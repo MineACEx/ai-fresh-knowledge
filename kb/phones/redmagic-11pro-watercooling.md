@@ -1,14 +1,17 @@
 ---
 seq: PH-004
 title: 红魔 11 Pro+ — 手机首次使用水冷散热
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: phones
 tags: [红魔, 努比亚, 水冷, 游戏手机, 散热, 骁龙8EliteGen5]
 status: current
+sourceType: community
+evidence: single-source
+verifiedBy: editor
 summary: 红魔 11 Pro 系列 4999 元起，全球首发"风水双冷"散热，11 Pro+ 搭载第五代骁龙 8 至尊版 + 7500mAh 电池
 source:
   - "红魔官网 — https://www.nubia.com"
-confidence: verified
 ---
 
 # 红魔 11 Pro+：手机首次水冷

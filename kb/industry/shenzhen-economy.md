@@ -5,11 +5,13 @@ date: 2026-10-23
 category: industry
 tags: [深圳, GDP, 南山, 经济, APEC, 区域经济]
 status: current
+sourceType: primary
+evidence: multi-source
+verifiedBy: both
 summary: 2026 前三季度深圳 GDP 30250.85 亿元同比增 6.0%；2025 年南山 GDP 破万亿，成中国首个万亿 GDP 地市辖区
 source:
   - "深圳市统计局 — https://www.sz.gov.cn"
   - "广东省政府 — http://www.gd.gov.cn/gdywdt/dsdt/content/post_4849240.html"
-confidence: verified
 ---
 
 # 深圳经济数据

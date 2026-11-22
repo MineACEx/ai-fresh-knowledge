@@ -1,14 +1,17 @@
 ---
 seq: GPU-001
 title: NVIDIA RTX Spark — 把 120B 大模型装进 PC
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: hardware-gpu
 tags: [NVIDIA, RTX Spark, DGX Spark, 本地大模型, 桌面AI]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: editor
 summary: NVIDIA 推出 RTX Spark 紧凑型桌面主机，可本地跑 120B 参数大模型，并推出四机 DGX Spark 套件
 source:
   - "NVIDIA — https://www.nvidia.com"
-confidence: verified
 ---
 
 # NVIDIA RTX Spark

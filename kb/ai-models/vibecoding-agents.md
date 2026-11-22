@@ -1,14 +1,17 @@
 ---
 seq: M-005
 title: Vibe Coding 成为主流路径 — Agent 前端全面开花
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: ai-models
 tags: [VibeCoding, Agent, DeepSeekHarness, CodeBuddy, Codex, ClaudeCode, Trae, ZCode]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: agent
 summary: Vibe Coding 成为热门开发路径，DeepSeek Harness/WorkBuddy/CodeBuddy/Hermes/Codex/Claude Code/OpenCode/Trae/ZCode 等 Agent 前端集中出炉
 source:
   - "GitHub — https://github.com"
-confidence: verified
 ---
 
 # Vibe Coding 与 Agent 前端生态

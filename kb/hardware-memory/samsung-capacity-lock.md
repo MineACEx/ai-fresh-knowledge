@@ -5,11 +5,13 @@ date: 2026-11-21
 category: hardware-memory
 tags: [三星, LTA, 长期供货协议, HBM, DRAM, NAND, 存储短缺]
 status: current
+sourceType: media
+evidence: single-source
+verifiedBy: both
 summary: 三星 2027-2029 大部分存储产能已被锁定，客户要求 LTA 保障延至 2031 年；2027 通用 DRAM 晶圆产能实际售罄，供货满足率仅 60-70%
 source:
   - "IT之家 — https://www.ithome.com/1/030/475.htm"
   - "韩媒 Economy Tribune"
-confidence: verified
 ---
 
 # 三星存储产能被长期锁定

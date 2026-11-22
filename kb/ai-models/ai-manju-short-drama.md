@@ -5,12 +5,14 @@ date: 2026-09-24
 category: ai-models
 tags: [AI漫剧, 短剧, 夜神月, 富江, 死亡笔记, AIGC内容, 同人]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: both
 summary: AI 漫剧已大规模进入大众生活，优质 AI 短剧层出不穷；夜神月×富江的跨界 AI 短剧由国内博主自制、火到外网，第四集 L 出场
 source:
   - "腾讯新闻 — https://news.qq.com/rain/a/20260924A0A2YS00"
   - "NGA — https://ngabbs.com/read.php?tid=47542615"
   - "PTT — https://www.pttweb.cc/bbs/Gossiping/M.1789272229.A.039"
-confidence: verified
 ---
 
 # AI 漫剧大规模兴起

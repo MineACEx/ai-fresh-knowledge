@@ -30,15 +30,34 @@
 ---
 seq: S-006                    # 序号（分类码-三位数）
 title: 麒麟 9050 Pro ...      # 一句话说清是什么
-date: 2026-09-07              # 关键日期
+date: 2026-09-07              # 关键日期（不许 00 占位）
+datePrecision: day            # day / month / year
 category: hardware-soc
 tags: [华为, 麒麟, 逻辑折叠]
-status: current               # current / disputed / outdated
+status: current               # current / disputed / outdated / rumor
 summary: 40-80 字摘要，让 AI 判断要不要读全文
-source: [来源](URL)
-confidence: verified          # verified / unverified / opinion
+source:
+  - "新浪财经 — https://..."
+  - "36氪 — https://..."
+sourceType: mixed             # primary / media / community / mixed
+evidence: multi-source        # multi-source / single-source / platform-only / user-provided
+verifiedBy: both              # editor / agent / both
 ---
 ```
+
+### 三个信任字段怎么读
+
+**旧版本用单一的 `confidence: verified`，是个设计失误**——它无法区分"事实可靠"和"作者核对过"。一个真实事件如果我只看过标题，和逐字核对过原文，在旧字段里长得一模一样。
+
+现在拆成三件事（详见 [CONFIDENCE.md](CONFIDENCE.md)）：
+
+| 字段 | 回答的问题 |
+|---|---|
+| `sourceType` | 信息从哪类源来 |
+| `evidence` | 这条事实本身有多强的证据 |
+| `verifiedBy` | 谁做了核对（人 / AI / 两者） |
+
+**`evidence: platform-only` 和 `user-provided` 不代表不可信。** 它们代表"搜索引擎验证不了这条路，但内容是真的"——抖音、酷安、微信公众号的内容爬虫抓不到，这恰恰是本库存在的理由之一。
 
 正文固定七节：**一句话结论 → 时间线 → 关键事实 → 为什么重要 → 评价 → 容易搞错的地方 → 相关条目**。
 

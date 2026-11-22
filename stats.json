@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T01:32:02.359Z",
+  "generatedAt": "2026-11-22T01:57:57.915Z",
   "total": 40,
   "byCategory": {
     "ai-models": 8,
@@ -17,6 +17,6 @@
     "disputed": 1
   },
   "totalWords": 57642,
-  "newest": "2026-11-21",
+  "newest": "2026-12-31",
   "oldest": "2024-07-01"
 }

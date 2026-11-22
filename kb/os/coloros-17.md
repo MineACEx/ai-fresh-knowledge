@@ -1,15 +1,18 @@
 ---
 seq: OS-002
 title: ColorOS 17 — 光场设计、流体云与柔性反馈
-date: 2026-09-00
+date: 2026-09-30
+datePrecision: month
 category: os
 tags: [ColorOS, OPPO, 光场设计, 流体云, 柔性反馈, FindX10]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: editor
 summary: ColorOS 17 主打"光场/凝光"视觉与流体云设计，凝光效果可随手势自然流动，新增柔性反馈，Find X10 系列首发搭载
 source:
   - "OPPO — https://www.oppo.com"
   - "IT之家 — https://www.ithome.com"
-confidence: verified
 ---
 
 # ColorOS 17

@@ -5,10 +5,12 @@ date: 2026-11-16
 category: ai-models
 tags: [DeepSeek, 开源, chat-demo, 推理框架, API]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: agent
 summary: DeepSeek 开放 App 全家桶 API 并开源聊天前端 chat-demo（github.com/deepseek-ai/chat-demo），推理框架同步开源
 source:
   - "deepseek-ai/chat-demo — https://github.com/deepseek-ai/chat-demo"
-confidence: verified
 ---
 
 # DeepSeek 开源全家桶

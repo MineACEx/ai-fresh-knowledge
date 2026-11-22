@@ -5,10 +5,12 @@ date: 2026-08-25
 category: hardware-soc
 tags: [苹果, M5Ultra, M6, 2nm, 端侧AI]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: agent
 summary: 2026-08-25 苹果同时发布 M6 与 M5 Ultra，官方称"史上最强芯片"，主打性能与端侧 AI 算力大幅跃升
 source:
   - "Apple Newsroom — https://www.apple.com/newsroom/"
-confidence: verified
 ---
 
 # 苹果 M5 Ultra 与 M6

@@ -1,14 +1,17 @@
 ---
 seq: GM-001
 title: Minecraft 26.1 版本号体系变更与取消混淆
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: games
 tags: [Minecraft, Mojang, 混淆, 版本号, Mod开发]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: editor
 summary: 从 1.21.11 跳到 26.1，版本命名改为年份制；同时取消代码混淆，Mod 开发与反编译门槛大幅降低
 source:
   - "paperweight-userdev — https://github.com/PaperMC/paperweight-userdev"
-confidence: verified
 ---
 
 # Minecraft 26.1：版本号重构与取消混淆

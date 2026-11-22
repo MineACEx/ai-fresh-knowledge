@@ -1,15 +1,18 @@
 ---
 seq: IND-004
 title: 库克卸任苹果 CEO — 特努斯时代开启
-date: 2026-09-00
+date: 2026-09-30
+datePrecision: month
 category: industry
 tags: [苹果, 库克, 特努斯, Ternus, 换帅]
 status: current
+sourceType: media
+evidence: multi-source
+verifiedBy: editor
 summary: 库克 2026 年 9 月卸任 CEO 转任执行董事长，约翰·特努斯（John Ternus）接任，被视为"更懂硬件的 CEO"上位
 source:
   - "中国青年网 — https://news.youth.cn"
   - "今日头条 — https://www.toutiao.com"
-confidence: verified
 ---
 
 # 库克卸任苹果 CEO

@@ -1,15 +1,18 @@
 ---
 seq: PH-005
 title: 主动风冷散热成为手机行业主流（2nm 时代标配）
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: phones
 tags: [散热, 风冷, 游戏手机, N2P, IP68, REDMIK90至尊版, 一加ACE7Pro, iQOO15Ultra]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: editor
 summary: 2026 新旗舰已用台积电 N2P 工艺，主动风冷成为标配；REDMI K90 至尊版/一加 ACE7 Pro/iQOO15 Ultra 等大量机型在用，且防水等级极高、重量极轻
 source:
   - "今日头条 — https://www.toutiao.com"
   - "知乎 — https://www.zhihu.com"
-confidence: verified
 ---
 
 # 主动风冷散热成为主流

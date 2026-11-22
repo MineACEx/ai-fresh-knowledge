@@ -5,10 +5,12 @@ date: 2026-09-03
 category: ai-models
 tags: [OpenAI, GPT-6, 旗舰模型, 长上下文]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: both
 summary: 2026-09-03 发布，105 万 token 上下文、128k 输出，输出 $50/M tokens，五档 effort，仅有 Responses API 支持工具调用
 source:
   - "OpenAI — https://openai.com"
-confidence: verified
 ---
 
 # GPT-6 Astra

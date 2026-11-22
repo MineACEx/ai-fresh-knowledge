@@ -1,15 +1,18 @@
 ---
 seq: M-003
 title: 模型排行榜口径差异 — BenchLM 与 LMArena 不可混用
-date: 2026-10-00
+date: 2026-10-31
+datePrecision: month
 category: ai-models
 tags: [BenchLM, LMArena, benchmark, 模型排名, 评测]
 status: current
+sourceType: community
+evidence: multi-source
+verifiedBy: editor
 summary: BenchLM 按能力维度打绝对分（Claude Opus 5.5 以 86.68 居首），LMArena 是 Elo 人类偏好榜，两者结论可能冲突
 source:
   - "BenchLM — https://benchlm.ai"
   - "LMArena — https://lmarena.ai"
-confidence: verified
 ---
 
 # 模型排行榜口径差异

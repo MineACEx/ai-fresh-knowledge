@@ -5,11 +5,13 @@ date: 2026-09-28
 category: hardware-soc
 tags: [苹果, A20Pro, N2, 2nm, WMCM, 能效, GTX1650, GTA5]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: both
 summary: A20 Pro 用的是普通 N2（非 N2P），却在手机里跑出 GTX 1650 级别的 GTA5 66FPS，每瓦性能约 11.8 倍；靠 2nm + 首发 WMCM 封装 + 大均热板三线共振
 source:
   - "钛媒体 — https://www.tmtpost.com/agent/ai-article/20598"
   - "Notebookcheck — https://www.notebookcheck.net/Apple-A20-Pro-7-core-GPU-Benchmarks-and-Specs.1396012.0.html"
-confidence: verified
 ---
 
 # 苹果 A20 Pro

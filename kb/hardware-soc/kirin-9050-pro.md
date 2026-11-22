@@ -5,11 +5,13 @@ date: 2026-09-07
 category: hardware-soc
 tags: [华为, 麒麟, 9050Pro, 逻辑折叠, 韬定律, MateXT2, 何庭波]
 status: current
+sourceType: media
+evidence: multi-source
+verifiedBy: both
 summary: 华为 Mate XT 2 搭载麒麟 9050 Pro，全球首款采用逻辑折叠技术的高性能芯片；晶体管密度 1.55亿→2.38亿/mm²，NPU/GPU/CPU 功耗降 66%/58%/41%
 source:
   - "新浪财经/经济参考报 — https://finance.sina.com.cn/jjxw/2026-09-08/doc-iniraith4914123.shtml"
   - "36氪 — https://36kr.com/p/3883290831138819"
-confidence: verified
 ---
 
 # 麒麟 9050 Pro

@@ -1,16 +1,19 @@
 ---
 seq: M-004
 title: GPT-6 Astra 的 AGI 宣称与 99.9%→62.7% 翻车
-date: 2026-10-00
+date: 2026-10-31
+datePrecision: month
 category: ai-models
 tags: [OpenAI, GPT-6Astra, AGI, benchmark, 基准污染, 黄仁勋]
 status: disputed
+sourceType: mixed
+evidence: multi-source
+verifiedBy: both
 summary: 官方宣称通用 AGI 测试达 99%、"欢迎来到 AGI 时代"；但换测试集后准确率从 99.9% 暴跌到 62.7%，出题人当场打脸
 source:
   - "36氪 — https://eu.36kr.com/zh/p/3978804854389507"
   - "TNW — https://thenextweb.com/news/gpt-6-astra-benchmarks-monitorability-cyber"
   - "TOI — https://timesofindia.indiatimes.com/technology/tech-news/"
-confidence: verified
 ---
 
 # GPT-6 Astra 的 AGI 宣称

@@ -1,14 +1,17 @@
 ---
 seq: GPU-002
 title: 高通主动下场 — 官方驱动与 DirectX 12 on Snapdragon
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: hardware-gpu
 tags: [高通, 骁龙, DirectX12, PC游戏, 转译, 模拟器]
 status: current
+sourceType: primary
+evidence: single-source
+verifiedBy: editor
 summary: 高通从"被动支持模拟器"转为主动下场，开发官方驱动并在骁龙平台测试原生 DirectX 12，推动 PC 游戏在 Android 上跑
 source:
   - "Qualcomm — https://www.qualcomm.com"
-confidence: verified
 ---
 
 # 高通主动下场 PC 转译

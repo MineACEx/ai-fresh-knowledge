@@ -5,11 +5,13 @@ date: 2026-11-17
 category: industry
 tags: [DRAM, NAND, 涨价, 存储, 扩产, 超级周期]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: editor
 summary: 2026 存储进入"超级牛市/超级周期"，手机笔电被迫涨价；上游厂商翻倍扩产但产能释放需时间，机构预计涨价至少持续两年
 source:
   - "36氪 — https://36kr.com"
   - "新华指数 — https://www.xinhuanet.com"
-confidence: verified
 ---
 
 # 存储超级周期

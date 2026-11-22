@@ -5,11 +5,13 @@ date: 2026-10-28
 category: hardware-soc
 tags: [高通, 骁龙, 8EE6, 极客湾, 能效倒退, 中核IPC, 翻车]
 status: current
+sourceType: community
+evidence: multi-source
+verifiedBy: both
 summary: 极客湾大横评给 8EE6 贴"年度最抽象芯片"标签：中核 IPC 倒退 11%，中核能效不如三代前骁龙 8 Gen3 的 A720，最差开出两三代倒车
 source:
   - "新浪/硅域寻常栈 — https://www.sina.cn/gc/article/niwttsf9707705.html"
   - "TechWeb — https://www.techweb.com.cn/it/2026-10-17/2979795.shtml"
-confidence: verified
 ---
 
 # 骁龙 8 Elite Extreme Gen 6（8EE6）

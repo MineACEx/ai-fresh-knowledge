@@ -5,12 +5,14 @@ date: 2026-10-28
 category: phones
 tags: [小米18, iPhone18, FindX10, vivoX500, REDMIX100, 一加16, iQOO16, 旗舰系列]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: both
 summary: 七家最新系列均已发布：Xiaomi18/iPhone18/FindX10/vivoX500/REDMI K100/一加16/iQOO16；一加16 与 iQOO16 均搭载第六代骁龙8超级至尊版
 source:
   - "新华网 — https://www.news.cn/tech/20261013/fd75acca11884b39ab5bdf7d21cf8364/c.html"
   - "IT之家 — https://m.ithome.com/html/1008471.htm"
   - "新浪财经 — https://finance.sina.com.cn/tob/2026-10-28/doc-iniwueft3712334.shtml"
-confidence: verified
 ---
 
 # 2026 各家在售旗舰系列总览

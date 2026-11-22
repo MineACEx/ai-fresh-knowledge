@@ -1,16 +1,19 @@
 ---
 seq: PH-007
 title: 荣耀 7 英寸大屏新机 — 约 13500mAh 电池
-date: 2026-11-00
+date: 2026-11-30
+datePrecision: month
 category: phones
 tags: [荣耀, 大电池, 13500mAh, 7英寸, Power3, 荣耀X系列]
 status: current
+sourceType: mixed
+evidence: multi-source
+verifiedBy: editor
 summary: 荣耀 7 英寸大屏新机被曝年前发布，有望搭载约 13500mAh 电池；或为荣耀 X 系列，与 Power3 同配 7 英寸大屏，最快春节前亮相
 source:
   - "IT之家 — https://m.ithome.com/html/1029827.htm"
   - "安兔兔 — https://antutu.com/doc/138516"
   - "ePrice — https://www.eprice.com.tw/mobile/talk/6021/5827526/1/"
-confidence: verified
 ---
 
 # 荣耀 7 英寸大屏 + 13500mAh

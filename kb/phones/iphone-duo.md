@@ -1,14 +1,17 @@
 ---
 seq: PH-003
 title: iPhone Duo — 苹果首款折叠屏口碑翻车
-date: 2026-00-00
+date: 2026-12-31
+datePrecision: year
 category: phones
 tags: [苹果, iPhoneDuo, 折叠屏, 翻车, 折痕]
 status: current
+sourceType: media
+evidence: single-source
+verifiedBy: editor
 summary: 苹果首款折叠屏定名 iPhone Duo，折痕问题被批"远不如国产手机"，花 2 万只能买初代试错品，特努斯首仗失败
 source:
   - "今日头条 — https://www.toutiao.com"
-confidence: verified
 ---
 
 # iPhone Duo

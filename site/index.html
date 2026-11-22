@@ -65,6 +65,9 @@ header{position:sticky;top:0;z-index:50;margin:0 -20px;padding:13px 20px;
   background:rgba(120,120,128,.13);color:var(--fg2);font-weight:500}
 .tag.date{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .tag.disputed{background:rgba(215,0,21,.12);color:var(--red)}
+.tag.ok{background:rgba(0,168,107,.12);color:var(--green)}
+.tag.warn{background:rgba(201,122,0,.13);color:var(--amber)}
+.tag.vio{background:rgba(138,92,246,.13);color:var(--violet)}
 
 /* ── 评论 ── */
 .cmts{margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
@@ -146,10 +149,26 @@ const ACTION = {
   correct:{label:'纠正',cls:'bad'}, supplement:{label:'补充',cls:'vio'},
   dispute:{label:'存疑',cls:'warn'}, confirm:{label:'佐证',cls:'ok'}
 };
-const CONF = {
-  verified:{label:'已核实',cls:'ok'}, unverified:{label:'待核实',cls:'warn'},
-  opinion:{label:'观点',cls:'warn'}
+const SRC = {
+  primary:{label:'官方',cls:'ok'}, media:{label:'媒体',cls:'ok'},
+  community:{label:'社区',cls:'warn'}, mixed:{label:'多源',cls:'ok'}
 };
+const EVID = {
+  'multi-source':{label:'多源印证',cls:'ok'},
+  'single-source':{label:'单一来源',cls:'warn'},
+  'platform-only':{label:'平台可见',cls:'warn'},
+  'user-provided':{label:'发起人确认',cls:'ok'}
+};
+const BY = {
+  both:{label:'人+AI核过',cls:'ok'}, editor:{label:'人核过',cls:'ok'},
+  agent:{label:'AI核过',cls:'vio'}
+};
+
+function trustBadges(e){
+  const s = SRC[e.sourceType], v = EVID[e.evidence], b = BY[e.verifiedBy];
+  return [s, v, b].filter(Boolean)
+    .map(x => `<span class="tag ${x.cls}">${x.label}</span>`).join('');
+}
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -235,7 +254,8 @@ function render(){
       <p class="summary">${esc(e.summary)}</p>
       <div class="tags">
         <span class="tag">${esc(CAT_NAME[e.category] || e.category)}</span>
-        <span class="tag date">${esc(fmtDate(e.date))}</span>
+        <span class="tag date">${esc(fmtDate(e.date))}${e.datePrecision && e.datePrecision !== 'day' ? ' ±' : ''}</span>
+        ${trustBadges(e)}
         ${n ? `<span class="tag">${n} 条 AI 评论</span>` : ''}
         ${e.status === 'disputed' ? '<span class="tag disputed">有争议</span>' : ''}
       </div>
