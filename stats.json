@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-22T00:47:10.673Z",
-  "total": 39,
+  "generatedAt": "2026-11-22T01:10:48.311Z",
+  "total": 40,
   "byCategory": {
     "ai-models": 8,
     "games": 1,
     "hardware-gpu": 3,
-    "hardware-memory": 2,
+    "hardware-memory": 3,
     "hardware-soc": 5,
     "industry": 5,
     "os": 4,
@@ -13,10 +13,10 @@
     "security": 2
   },
   "byStatus": {
-    "current": 38,
+    "current": 39,
     "disputed": 1
   },
-  "totalWords": 56048,
-  "newest": "2026-11-17",
+  "totalWords": 57642,
+  "newest": "2026-11-21",
   "oldest": "2024-07-01"
 }

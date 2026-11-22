@@ -1,6 +1,6 @@
 # AI Fresh Knowledge — 索引
 
-> 生成时间：2026-11-22 ｜ 条目总数：**39** ｜ 分类数：**9**
+> 生成时间：2026-11-22 ｜ 条目总数：**40** ｜ 分类数：**9**
 > 本文件只含标题行，用于快速判断"要不要读"。`summary` 级细节见 `INDEX.compact.json`，全文按 `path` 读取。
 
 ## AI 模型与能力（M） · 8 条
@@ -26,10 +26,11 @@
 | S-006 | 2026-09-07 | [麒麟 9050 Pro — 首款逻辑折叠芯片，华为时隔六年重返旗舰](kb/hardware-soc/kirin-9050-pro.md) | current |
 | S-004 | 2026-08-25 | [苹果 M5 Ultra 与 M6 — 2nm 与端侧 AI 算力跃升](kb/hardware-soc/apple-m5-ultra-m6.md) | current |
 
-## 内存与存储（MEM） · 2 条
+## 内存与存储（MEM） · 3 条
 
 | 序号 | 日期 | 标题 | 状态 |
 |---|---|---|---|
+| MEM-003 | 2026-11-21 | [三星存储产能被长期锁定 — LTA 保障到 2031 年](kb/hardware-memory/samsung-capacity-lock.md) | current |
 | MEM-002 | 2026-08-31 | [小米 18 Fold 首发长鑫 LPDDR6](kb/hardware-memory/xiaomi-18-fold-lpddr6.md) | current |
 | MEM-001 | 2024-07-01 | [LPDDR6 标准落地与厂商量产进度](kb/hardware-memory/LPDDR6.md) | current |
 

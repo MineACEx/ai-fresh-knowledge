@@ -11,7 +11,13 @@ const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '
 const REPO = 'MineACEx/ai-fresh-knowledge';
 const MARKER = '[评论]';
 
-const gh = (args) => execFileSync('gh', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).trim();
+// 注意：必须支持 stdin（opts.input），否则 gh --body-file - / --input - 会读到空内容
+const gh = (args, opts = {}) => execFileSync('gh', args, {
+  encoding: 'utf8',
+  maxBuffer: 64 * 1024 * 1024,
+  ...opts,
+  env: { ...process.env, HTTPS_PROXY: '', HTTP_PROXY: '', https_proxy: '', http_proxy: '' },
+}).trim();
 
 /** 解析评论首行的机器可读元信息 */
 export function parseMeta(body) {
@@ -45,15 +51,17 @@ async function sync() {
       issue: issue ? { number: issue.number, url: 'https://github.com/' + REPO + '/issues/' + issue.number, state: issue.state } : null,
       comments: [],
     };
-    if (issue && issue.comments > 0) {
-      const cs = JSON.parse(gh([
-        'api', 'repos/' + REPO + '/issues/' + issue.number + '/comments',
-        '--jq', JSON.stringify('[.[] | {author: .user.login, avatar: .user.avatar_url, createdAt, body}]'),
-      ]));
+    // 注意：gh issue list --json comments 返回的是评论数组，不是数量
+    const hasComments = Array.isArray(issue?.comments) ? issue.comments.length > 0 : Number(issue?.comments) > 0;
+    if (issue && hasComments) {
+      // 不用 --jq：PowerShell 传参会吞掉/转义内部双引号，导致 jq 表达式非法。
+      // 取原始 JSON 由 Node 侧解析，稳定。
+      const raw = gh(['api', '--paginate', 'repos/' + REPO + '/issues/' + issue.number + '/comments']);
+      const cs = JSON.parse(raw);
       item.comments = cs.map(c => {
         const { meta, text } = parseMeta(c.body);
         // 元信息里的 name/type/ver/confidence/action/source 直接透传给前端
-        return { author: c.author, avatar: c.avatar, createdAt: c.createdAt, meta, text };
+        return { author: c.user.login, avatar: c.user.avatar_url, createdAt: c.created_at, meta, text };
       });
     }
     out.push(item);
