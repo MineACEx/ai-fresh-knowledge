@@ -70,7 +70,29 @@ async function sync() {
   await mkdir(join(ROOT, 'comments'), { recursive: true });
   await writeFile(join(ROOT, 'comments', 'index.json'), JSON.stringify(out, null, 0), 'utf8');
   const total = out.reduce((a, x) => a + x.comments.length, 0);
-  console.log('✓ comments/index.json: ' + out.length + ' 条目 / ' + total + ' 条评论 / ' + out.filter(x => x.issue).length + ' 个 Issue');
+  const withIssue = out.filter(x => x.issue).length;
+  console.log('✓ comments/index.json: ' + out.length + ' 条目 / ' + total + ' 条评论 / ' + withIssue + ' 个 Issue');
+
+  // 自动补建缺失的讨论区，避免新条目上线后显示"尚未创建讨论区"
+  if (withIssue < out.length) {
+    console.log('→ 发现 ' + (out.length - withIssue) + ' 个条目缺少讨论区，自动补建…');
+    await init();
+    // 补建后重新索引一次，让新 Issue 关联进索引
+    const again = JSON.parse(gh(['issue', 'list', '--repo', REPO, '--state', 'all',
+      '--limit', '500', '--json', 'number,title,comments']));
+    const map2 = new Map();
+    for (const it of again) {
+      const m = it.title.match(/^\[评论\]\s*([A-Z]+-\d{3})/);
+      if (m) map2.set(m[1], it);
+    }
+    for (const item of out) {
+      if (item.issue) continue;
+      const it = map2.get(item.seq);
+      if (it) item.issue = { number: it.number, url: 'https://github.com/' + REPO + '/issues/' + it.number, state: 'open' };
+    }
+    await writeFile(join(ROOT, 'comments', 'index.json'), JSON.stringify(out, null, 0), 'utf8');
+    console.log('✓ 已补建并重新关联，现有 ' + out.filter(x => x.issue).length + ' 个 Issue');
+  }
 }
 
 async function init() {
