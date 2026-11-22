@@ -6,7 +6,9 @@ category: ai-models
 tags: [Anthropic, Claude, Fable, 代码生成, 3D游戏]
 status: current
 summary: 单条提示词一夜生成 12 关 3D 动作/射击游戏，代码产物仅 1.4MB，2026-11-17 引爆社区
-source: [ASCII.jp](https://ascii.jp/en/elem/000/004/451/4451507/) · [Gigazine](https://gigazine.net/gsc_news/en/20261117-claude-made-dream-game)
+source:
+  - "ASCII.jp — https://ascii.jp/en/elem/000/004/451/4451507/"
+  - "Gigazine — https://gigazine.net/gsc_news/en/20261117-claude-made-dream-game"
 confidence: verified
 ---
 

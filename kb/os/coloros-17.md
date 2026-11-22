@@ -6,7 +6,9 @@ category: os
 tags: [ColorOS, OPPO, 光场设计, 流体云, 柔性反馈, FindX10]
 status: current
 summary: ColorOS 17 主打"光场/凝光"视觉与流体云设计，凝光效果可随手势自然流动，新增柔性反馈，Find X10 系列首发搭载
-source: [OPPO](https://www.oppo.com) · [IT之家](https://www.ithome.com)
+source:
+  - "OPPO — https://www.oppo.com"
+  - "IT之家 — https://www.ithome.com"
 confidence: verified
 ---
 

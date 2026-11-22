@@ -6,7 +6,9 @@ category: os
 tags: [荣耀, MagicOS, vivo, OriginOS, 液态玻璃]
 status: current
 summary: MagicOS 11 宣称行业首个支持动态场景液态玻璃效果；OriginOS 7 Beta 内测开启，主打新玻璃样式与控制中心改版
-source: [泡泡网](https://www.pconline.com.cn) · [CNMO](https://www.cnmo.com)
+source:
+  - "泡泡网 — https://www.pconline.com.cn"
+  - "CNMO — https://www.cnmo.com"
 confidence: verified
 ---
 

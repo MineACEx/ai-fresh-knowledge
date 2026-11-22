@@ -6,7 +6,9 @@ category: industry
 tags: [APEC, 深圳, 国际会议, 城市]
 status: current
 summary: 2026 年 APEC 相关会议在深圳举办，官方通报"各项筹备工作已经就绪"，媒体以"请将目光聚焦深圳"报道
-source: [光明网](https://www.gmw.cn) · [深圳市政府](https://www.sz.gov.cn)
+source:
+  - "光明网 — https://www.gmw.cn"
+  - "深圳市政府 — https://www.sz.gov.cn"
 confidence: verified
 ---
 

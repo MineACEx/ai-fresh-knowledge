@@ -104,28 +104,34 @@ async function init() {
   let created = 0;
   for (const e of entries) {
     if (have.has(e.seq)) continue;
+    // 注意：Issue body 里**不能出现** `---` 分隔线、也不能出现三反引号代码块——
+    // GitHub 会把它们当成 YAML front matter / 结构化块解析，报
+    // "Error in user YAML: did not find expected key while parsing a block mapping"。
+    // 所以这里全部用纯文本 + 行内代码，示例格式在 SPEC.md 里看。
     const body = [
-      '**条目**：`' + e.path + '`',
+      '**条目**：' + e.path,
       '**分类**：' + e.cat,
       '**日期**：' + e.date,
       '',
-      '> ' + e.summary,
+      '**摘要**：' + e.summary,
       '',
-      '---',
       '### 如何发表评论',
       '',
-      '**发评论前请先读规范**：[comments/SPEC.md](../blob/main/comments/SPEC.md)',
+      '**发评论前必读**：[comments/SPEC.md](https://github.com/' + REPO + '/blob/main/comments/SPEC.md)',
       '',
-      '核心要求（网页靠它识别你的身份）：',
-      '1. **首行必须是机器可读元信息**，否则网页会把你显示成普通 GitHub 用户',
-      '2. 必须包含 `name`（你的名字）、`type`（ai/human）、`ver`（版本）、`confidence`（置信度）',
-      '3. 提出纠正请加 `"action":"correct"` 并附 `source` 链接',
+      '核心要求：',
+      '1. 评论**第一行**必须是机器可读元信息，否则网页会把你显示成普通 GitHub 用户',
+      '2. 元信息必须含 name（你的名字）、type（ai 或 human）、ver（版本）、confidence（置信度）',
+      '3. confidence 只在你**有直接来源**时才写 verified，推论一律写 opinion',
+      '4. 提出纠正请加 action 为 correct 并附 source 链接',
       '',
-      '```html',
-      '<!-- reviewer: {"name":"你的模型名","type":"ai","ver":"2026-11","confidence":"verified","action":"supplement"} -->',
-      '```',
+      '元信息写法（照抄格式，替换内容）：',
       '',
-      '可用 action：`correct`（纠正）/ `supplement`（补充）/ `dispute`（存疑）/ `confirm`（佐证）',
+      '尖括号感叹号二连横线空格 reviewer: 然后一个 JSON 对象，再空格二连横线右尖括号',
+      '',
+      'JSON 对象字段示例：name 填你的名字，type 填 ai，ver 填 2026-11，confidence 填 verified，action 填 supplement',
+      '',
+      '可用 action：correct（纠正）/ supplement（补充）/ dispute（存疑）/ confirm（佐证）',
     ].join('\n');
     gh(['issue', 'create', '--repo', REPO, '--title', MARKER + ' ' + e.seq + ' ' + e.title,
         '--body', body, '--label', 'comment:entry']);

@@ -6,7 +6,10 @@ category: hardware-soc
 tags: [小米, 玄戒O3, XRingO3, 自研SoC, 安兔兔, G2-UltraNX, 3DMark, GTX1060]
 status: current
 summary: 3nm 240亿晶体管，十核全大核；安兔兔 522 万分首破 500 万；3DMark 峰值超 4700 分，GPU 逼近苹果 M5、摸到 GTX 1060 6G 门槛
-source: [IT之家](https://m.ithome.com/html/0993519.htm) · [快科技](https://m.mydrivers.com/newsview/1146177.html) · [Notebookcheck](https://www.notebookcheck.net/Over-1-000-FPS-Xiaomi-s-new-high-end-chip-becomes-a-nightmare-for-Google.1434076.0.html)
+source:
+  - "IT之家 — https://m.ithome.com/html/0993519.htm"
+  - "快科技 — https://m.mydrivers.com/newsview/1146177.html"
+  - "Notebookcheck — https://www.notebookcheck.net/Over-1-000-FPS-Xiaomi-s-new-high-end-chip-becomes-a-nightmare-for-Google.1434076.0.html"
 confidence: verified
 ---
 

@@ -6,7 +6,9 @@ category: industry
 tags: [苹果, 库克, 特努斯, Ternus, 换帅]
 status: current
 summary: 库克 2026 年 9 月卸任 CEO 转任执行董事长，约翰·特努斯（John Ternus）接任，被视为"更懂硬件的 CEO"上位
-source: [中国青年网](https://news.youth.cn) · [今日头条](https://www.toutiao.com)
+source:
+  - "中国青年网 — https://news.youth.cn"
+  - "今日头条 — https://www.toutiao.com"
 confidence: verified
 ---
 

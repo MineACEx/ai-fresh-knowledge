@@ -6,7 +6,8 @@ category: hardware-gpu
 tags: [高通, 骁龙, DirectX12, PC游戏, 转译, 模拟器]
 status: current
 summary: 高通从"被动支持模拟器"转为主动下场，开发官方驱动并在骁龙平台测试原生 DirectX 12，推动 PC 游戏在 Android 上跑
-source: [Qualcomm](https://www.qualcomm.com)
+source:
+  - "Qualcomm — https://www.qualcomm.com"
 confidence: verified
 ---
 

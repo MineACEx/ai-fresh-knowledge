@@ -6,7 +6,8 @@ category: games
 tags: [Minecraft, Mojang, 混淆, 版本号, Mod开发]
 status: current
 summary: 从 1.21.11 跳到 26.1，版本命名改为年份制；同时取消代码混淆，Mod 开发与反编译门槛大幅降低
-source: [paperweight-userdev](https://github.com/PaperMC/paperweight-userdev)
+source:
+  - "paperweight-userdev — https://github.com/PaperMC/paperweight-userdev"
 confidence: verified
 ---
 

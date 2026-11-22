@@ -6,7 +6,9 @@ category: hardware-gpu
 tags: [DLSS5, NVIDIA, AMD, Radeon, RTX20系, HIP内核, ShortFuse, FSR4]
 status: current
 summary: DLSS 5 官方限定 RTX 50 独占，但社区已让 RTX 20/30/40 三代和老 A 卡跑起来；A 卡性能提升最高 89%，靠自定义 HIP 内核实现
-source: [17173](https://news.17173.com/content/09012026/110304866.shtml) · [360游戏](http://360game.360.cn/article/content?id=6aba044869f778709669fe00)
+source:
+  - "17173 — https://news.17173.com/content/09012026/110304866.shtml"
+  - "360游戏 — http://360game.360.cn/article/content?id=6aba044869f778709669fe00"
 confidence: verified
 ---
 

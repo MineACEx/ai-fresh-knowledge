@@ -6,7 +6,9 @@ category: security
 tags: [iOS, Android, HackiOS, UniXNU, XNU, RedmiK90, TrollStore]
 status: current
 summary: HackiOS 把 XNU 内核+未修改 iOS 用户态移植到 Android 设备，REDMI K90 已真机跑 iOS 26.6.2 并双系统；UniXNU 让多机型跑 iOS 16/17
-source: [hackios-redmi-k90-annibale](https://github.com/iola1999/hackios-redmi-k90-annibale) · [hackios-xnu-kernel](https://github.com/oosexgang/hackios-xnu-kernel)
+source:
+  - "hackios-redmi-k90-annibale — https://github.com/iola1999/hackios-redmi-k90-annibale"
+  - "hackios-xnu-kernel — https://github.com/oosexgang/hackios-xnu-kernel"
 confidence: verified
 ---
 

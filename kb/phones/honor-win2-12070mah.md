@@ -6,7 +6,8 @@ category: phones
 tags: [荣耀, WIN2, WINRT2, 大电池, 青海湖电池, 续航, 165Hz, 185Hz]
 status: current
 summary: 12070mAh 首发；极客湾续航榜第一亮屏 13 小时；社区实测 30% 电亮屏 7 小时（折算约 21 小时）；REDMI/一加已大规模用 165Hz+
-source: [荣耀俱乐部](https://club-api.c.honor.com/cn/thread-30477554-1-1.html)
+source:
+  - "荣耀俱乐部 — https://club-api.c.honor.com/cn/thread-30477554-1-1.html"
 confidence: verified
 ---
 

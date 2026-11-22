@@ -6,7 +6,9 @@ category: os
 tags: [小米, HyperOS, 澎湃OS, Rust, Flutter, MIUI]
 status: current
 summary: 澎湃 OS 4 正式采用 Flutter + Rust 重构，桌面/相册/天气等系统应用重写，分阶段清除 MIUI 时代遗留代码，有望成最稳定版本
-source: [知乎](https://www.zhihu.com) · [IT之家](https://www.ithome.com)
+source:
+  - "知乎 — https://www.zhihu.com"
+  - "IT之家 — https://www.ithome.com"
 confidence: verified
 ---
 

@@ -6,7 +6,8 @@ category: phones
 tags: [红魔, 努比亚, 水冷, 游戏手机, 散热, 骁龙8EliteGen5]
 status: current
 summary: 红魔 11 Pro 系列 4999 元起，全球首发"风水双冷"散热，11 Pro+ 搭载第五代骁龙 8 至尊版 + 7500mAh 电池
-source: [红魔官网](https://www.nubia.com)
+source:
+  - "红魔官网 — https://www.nubia.com"
 confidence: verified
 ---
 

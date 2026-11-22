@@ -6,7 +6,9 @@ category: phones
 tags: [小米, 小米18, 妙享背屏, 徕卡, AI卡片]
 status: current
 summary: 小米 18 Pro 系列 5999 元起，妙享背屏支持 AI 生成应用卡与自定义卡片，徕卡双 2 亿像素，镜头纯平无凸起
-source: [什么值得买](https://post.smzdm.com) · [IT之家](https://www.ithome.com)
+source:
+  - "什么值得买 — https://post.smzdm.com"
+  - "IT之家 — https://www.ithome.com"
 confidence: verified
 ---
 

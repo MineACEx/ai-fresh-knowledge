@@ -6,7 +6,9 @@ category: ai-models
 tags: [字节跳动, Seedance, 视频生成, 多模态, 漫剧, 工业化]
 status: current
 summary: 单次生成时长提升至 30 秒，支持最多 50 个多模态参考素材，新增白模/绿幕参考与视频局部编辑，原生支持 10 余种语言
-source: [科技日报](https://www.stdaily.com/web/gdxw/2026-08/03/content_558280.html) · [字节 Seed](https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5)
+source:
+  - "科技日报 — https://www.stdaily.com/web/gdxw/2026-08/03/content_558280.html"
+  - "字节 Seed — https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5"
 confidence: verified
 ---
 

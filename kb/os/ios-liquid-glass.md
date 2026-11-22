@@ -6,7 +6,9 @@ category: os
 tags: [iOS, 液态玻璃, LiquidGlass, WWDC, 设计语言]
 status: current
 summary: iOS 26 引入液态玻璃设计并成为行业潮流；iOS 27 最低支持 iPhone 11，新增透明度调节，古尔曼称短期内不会淘汰该设计
-source: [少数派](https://sspai.com) · [WWDC 2026](https://developer.apple.com/wwdc/)
+source:
+  - "少数派 — https://sspai.com"
+  - "WWDC 2026 — https://developer.apple.com/wwdc/"
 confidence: verified
 ---
 

@@ -6,7 +6,8 @@ category: hardware-memory
 tags: [小米, 长鑫, CXMT, LPDDR6, 折叠屏, 国产供应链]
 status: current
 summary: 长鑫存储 2026-08-31 宣布 LPDDR6 量产（12.8Gbps），小米 18 Fold 成为首发机型，中国厂商首次在该世代领先
-source: [CXMT](http://www.cxmt.com)
+source:
+  - "CXMT — http://www.cxmt.com"
 confidence: verified
 ---
 

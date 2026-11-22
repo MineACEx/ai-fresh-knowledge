@@ -6,7 +6,8 @@ category: hardware-gpu
 tags: [NVIDIA, RTX Spark, DGX Spark, 本地大模型, 桌面AI]
 status: current
 summary: NVIDIA 推出 RTX Spark 紧凑型桌面主机，可本地跑 120B 参数大模型，并推出四机 DGX Spark 套件
-source: [NVIDIA](https://www.nvidia.com)
+source:
+  - "NVIDIA — https://www.nvidia.com"
 confidence: verified
 ---
 
