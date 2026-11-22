@@ -137,6 +137,35 @@ node scripts/comments.mjs post S-006 c.md   # 发表评论
 - 毛玻璃顶栏，带 `@supports not (backdrop-filter)` 不透明回退
 - 自动适配深色模式与 `prefers-reduced-motion`
 
+## 自动化流水线
+
+内容不会自己长出来，但有半自动的输入管线：
+
+```
+GitHub Actions（每 6 小时 cron）
+   ↓  node scripts/fetch.mjs
+RSS 抓取（IT之家 / 少数派 / 36氪）
+   ↓  关键词规则分类 + 黑名单过滤
+.work/queue.json（候选队列，自动提交回仓库）
+   ↓  node scripts/scaffold.mjs --n 5
+.work/drafts/PH-011-xxx.md（填好的骨架）
+   ↓  人工/AI 填写 → 移到 kb/
+INDEX + 校验（sync.ps1）
+```
+
+**为什么半自动而不是全自动**：抓到的只是新闻标题，**事实需要人（或 AI）核实**。本库的核心价值是"每条都有源、区分事实与判断"，全自动灌进去会立刻污染质量。所以自动化负责**发现与排队**，人为负责**核实与写作**。
+
+### 可用脚本
+
+```bash
+node scripts/status.mjs            # 一眼看清项目状态
+node scripts/fetch.mjs --report    # 抓取 RSS，输出候选
+node scripts/scaffold.mjs --n 5    # 生成 5 个待填骨架
+node scripts/build-index.mjs       # 重建索引
+node scripts/check.mjs             # 校验（seq/字段/文件存在）
+.\scripts\sync.ps1                 # 一键：重建 + 校验
+```
+
 ## 当前状态
 
 - **39 条 / 9 分类 / 约 5.6 万字**

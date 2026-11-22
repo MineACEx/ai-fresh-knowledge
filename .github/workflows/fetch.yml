@@ -1,0 +1,41 @@
+name: Auto fetch tech news
+
+on:
+  schedule:
+    # 每 6 小时抓一次（UTC 0/6/12/18 点 = 北京 8/14/20/2 点）
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch RSS
+        run: node scripts/fetch.mjs --report
+
+      - name: Commit queue
+        run: |
+          if [ ! -f .work/queue.json ]; then echo "no queue, skip"; exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f .work/queue.json
+          if git diff --staged --quiet; then
+            echo "队列无变化"
+          else
+            N=$(node -e "const q=require('./.work/queue.json');console.log(q.filter(x=>x.status==='pending').length)")
+            git commit -m "chore(auto): 抓取科技资讯候选（待处理 $N 条）"
+            git push
+          fi

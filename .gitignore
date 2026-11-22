@@ -17,6 +17,11 @@ desktop.ini
 *.tmp
 dist/
 
+# 自动化工作区：queue.json 由 workflow 强制追踪，草稿不追踪
+.work/*.json
+!.work/queue.json
+.work/drafts/
+
 # 本地覆盖
 *.local.*
 .env
