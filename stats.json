@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-11-22T00:47:10.673Z",
+  "total": 39,
+  "byCategory": {
+    "ai-models": 8,
+    "games": 1,
+    "hardware-gpu": 3,
+    "hardware-memory": 2,
+    "hardware-soc": 5,
+    "industry": 5,
+    "os": 4,
+    "phones": 9,
+    "security": 2
+  },
+  "byStatus": {
+    "current": 38,
+    "disputed": 1
+  },
+  "totalWords": 56048,
+  "newest": "2026-11-17",
+  "oldest": "2024-07-01"
+}

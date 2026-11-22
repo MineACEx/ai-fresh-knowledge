@@ -1,0 +1,23 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时产物
+*.log
+*.tmp
+dist/
+
+# 本地覆盖
+*.local.*
+.env
+.env.*
