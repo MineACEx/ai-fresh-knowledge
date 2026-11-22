@@ -30,21 +30,19 @@ function api(args, jsonBody) {
   }).trim();
 }
 
-// ── 步骤 1：先对齐，避免 BadObjectState ──
+// ── 步骤 1：对齐 —— 用 reset --soft 而不是 rebase ──
+// rebase 会给提交换新哈希，导致本地与远程再次分叉（踩过两次）。
+// reset --soft origin/main 把 HEAD 移到远程位置，但**保留工作区与索引**，
+// 于是所有差异都变成"未提交的变更"，接着统一由 API 提交，哈希不会再错位。
 if (!NO_REBASE) {
   try {
     sh('git', ['fetch', 'origin', BRANCH]);
-    const ahead = sh('git', ['rev-list', '--count', 'origin/' + BRANCH + '..HEAD']);
     const behind = sh('git', ['rev-list', '--count', 'HEAD..origin/' + BRANCH]);
-    if (behind !== '0') {
-      console.log('检测到本地落后远程 ' + behind + ' 个提交，先 rebase 对齐…');
-      sh('git', ['rebase', 'origin/' + BRANCH]);
-      console.log('  ✓ rebase 完成');
-    } else {
-      console.log('本地领先 ' + ahead + ' 个提交，无需对齐');
-    }
+    console.log('远程领先本地 ' + behind + ' 个提交');
+    sh('git', ['reset', '--soft', 'origin/' + BRANCH]);
+    console.log('  ✓ HEAD 已对齐 origin/' + BRANCH + '，差异保留在工作区');
   } catch (e) {
-    console.error('对齐失败（继续尝试提交）: ' + String(e.message).split('\n')[0]);
+    console.error('对齐失败（继续尝试）: ' + String(e.message).split('\n')[0]);
   }
 }
 
@@ -53,7 +51,8 @@ const headTree = api(['api', 'repos/' + REPO + '/git/commits/' + headSha, '--jq'
 console.log('远端 HEAD ' + headSha.slice(0, 8));
 
 // ── 步骤 2：用 --name-status 拿到 A/M/D，删除要显式处理 ──
-const raw = sh('git', ['diff', '--name-status', 'origin/' + BRANCH + '..HEAD'])
+// HEAD 已 reset 到 origin/main，所以差异 = 工作区 + 索引 vs origin/main
+const raw = sh('git', ['diff', '--name-status', 'origin/' + BRANCH])
   .split(/\r?\n/).filter(Boolean);
 
 if (!raw.length) { console.log('没有待推送文件'); process.exit(0); }
