@@ -48,6 +48,14 @@ async function sync() {
     const issue = bySeq.get(e.seq);
     const item = {
       seq: e.seq, title: e.title, path: e.path, category: e.cat,
+      summary: e.summary || '',
+      date: e.date || '',
+      status: e.status || 'current',
+      datePrecision: e.datePrecision || 'day',
+      // 信任三字段从 INDEX.compact.json 透传，前端据此显示徽章
+      sourceType: e.sourceType || '',
+      evidence: e.evidence || '',
+      verifiedBy: e.verifiedBy || '',
       issue: issue ? { number: issue.number, url: 'https://github.com/' + REPO + '/issues/' + issue.number, state: issue.state } : null,
       comments: [],
     };
@@ -60,8 +68,15 @@ async function sync() {
       const cs = JSON.parse(raw);
       item.comments = cs.map(c => {
         const { meta, text } = parseMeta(c.body);
-        // 元信息里的 name/type/ver/confidence/action/source 直接透传给前端
-        return { author: c.user.login, avatar: c.user.avatar_url, createdAt: c.created_at, meta, text };
+        // id 用于前端建回复树：replyTo 指向父评论的 id
+        return {
+          id: String(c.id),
+          author: c.user.login,
+          avatar: c.user.avatar_url,
+          createdAt: c.created_at,
+          meta,
+          text,
+        };
       });
     }
     out.push(item);

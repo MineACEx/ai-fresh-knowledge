@@ -93,11 +93,68 @@ header{position:sticky;top:0;z-index:50;margin:0 -20px;padding:13px 20px;
 .ct{font-size:14px;color:var(--fg);margin:0;white-space:pre-wrap;word-break:break-word}
 .ct a{color:var(--accent)}
 .noc{color:var(--fg2);font-size:13px;font-style:italic;margin:0}
-.ilink{display:inline-flex;align-items:center;gap:4px;margin-top:9px;
-  font-size:12px;color:var(--accent);text-decoration:none}
+.ilink{display:inline-flex;align-items:center;gap:4px;font-size:12px;
+  color:var(--accent);text-decoration:none}
 .ilink:hover{text-decoration:underline}
 
+/* 回复树 */
+.cmt{margin-left:calc(var(--depth,0) * 26px)}
+.cmt[style*="--depth:1"] .ava,.cmt[style*="--depth:2"] .ava{width:24px;height:24px;flex-basis:24px;font-size:10px}
+.cact{display:flex;align-items:center;gap:14px;margin-top:4px}
+.reply-btn{border:0;background:none;padding:0;font-size:12px;color:var(--fg2);
+  cursor:pointer;font-family:var(--sans);transition:color .15s}
+.reply-btn:hover{color:var(--accent)}
+.cmt.replying{background:rgba(0,113,227,.05);border-radius:10px;corner-shape:squircle;
+  box-shadow:0 0 0 6px rgba(0,113,227,.05)}
+
+/* 输入框 */
+.composer{margin-top:16px;padding:14px;border:1px solid var(--line);
+  border-radius:14px;corner-shape:squircle;background:rgba(120,120,128,.045)}
+.crow{display:flex;gap:8px;margin-bottom:8px}
+.cname,.ctype,.ctoken,.ctext{font-family:var(--sans);font-size:13.5px;color:var(--fg);
+  background:var(--bg);border:1px solid var(--line);border-radius:9px;corner-shape:squircle;
+  padding:8px 11px;outline:none;transition:border-color .16s,box-shadow .16s}
+.cname{flex:1;min-width:0}
+.ctype{width:84px;cursor:pointer}
+.ctext{width:100%;resize:vertical;min-height:66px;line-height:1.55;display:block}
+.cname:focus,.ctext:focus,.ctoken:focus,.ctype:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,113,227,.13)}
+.cbar{display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap}
+.chint{font-size:12px;color:var(--fg2);display:flex;align-items:center;gap:5px;cursor:pointer}
+.chint input{margin:0;cursor:pointer}
+.ctoken{flex:1;min-width:130px;font-family:var(--mono);font-size:12px}
+.csend{margin-left:auto;border:0;background:var(--accent);color:#fff;
+  font-family:var(--sans);font-size:13px;font-weight:600;padding:8px 18px;
+  border-radius:10px;corner-shape:squircle;cursor:pointer;transition:opacity .16s,transform .12s}
+.csend:hover{opacity:.88}
+.csend:active{transform:scale(.97)}
+.csend:disabled{opacity:.45;cursor:default}
+.cmsg{font-size:12px;margin:8px 0 0;min-height:16px;color:var(--fg2)}
+.cmsg.err{color:var(--red)}
+.cmsg.ok{color:var(--green)}
+.replying-to{font-size:11.5px;color:var(--accent);margin:0 0 6px;
+  display:flex;align-items:center;gap:8px}
+.replying-to button{border:0;background:none;color:var(--fg2);cursor:pointer;
+  font-size:11px;padding:0;font-family:var(--sans)}
+.replying-to button:hover{color:var(--red)}
+
 .empty{text-align:center;padding:60px 20px;color:var(--fg2)}
+
+/* 列表卡片可点击 */
+.entry[data-open]{cursor:pointer}
+.entry[data-open]:hover{border-color:rgba(0,113,227,.35)}
+.entry[data-open]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.open-hint{margin-left:auto;color:var(--accent);font-weight:600}
+
+/* 详情视图 */
+.detail{animation:fadein .22s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.back-btn{border:0;background:none;padding:0 0 12px;font-size:13px;color:var(--accent);
+  cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{text-decoration:underline}
+.cmt-title{font-size:13px;font-weight:600;color:var(--fg2);margin:20px 0 0;
+  text-transform:uppercase;letter-spacing:.06em}
+@media(prefers-reduced-motion:reduce){.detail{animation:none}}
 footer{max-width:940px;margin:60px auto 0;padding-top:24px;border-top:1px solid var(--line);
   color:var(--fg2);font-size:12.5px;line-height:1.85}
 footer a{color:var(--accent);text-decoration:none}
@@ -139,7 +196,7 @@ kbd{font-family:var(--mono);font-size:11px;padding:1.5px 6px;border-radius:6px;c
 <script type="module">
 import { observePills, pillPath, smoothPill } from './g2-squircle.js';
 
-const state = { all: [], cat: 'all', q: '' };
+const state = { all: [], cat: 'all', q: '', detail: null };
 const CAT_NAME = {
   'ai-models':'AI 模型','hardware-soc':'SoC','hardware-memory':'内存',
   'hardware-gpu':'GPU','phones':'手机','os':'系统','games':'游戏',
@@ -187,10 +244,81 @@ function relTime(iso){
   if(s < 2592000) return Math.floor(s/86400)+' 天前';
   return fmtDate(iso);
 }
-/** 把纯文本里的裸 URL 变链接（其余仍走 esc，防 XSS） */
+/** 轻量 Markdown 渲染：先 esc 防 XSS，再还原少量语法 */
 function linkify(text){
-  return esc(text).replace(/(https?:\/\/[^\s<]+)/g,
-    '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+  let s = esc(text);
+  const blocks = [];
+  s = s.replace(/```([\s\S]*?)```/g, function(_, code){
+    blocks.push(String.fromCharCode(60) + 'pre class="md-pre"' + String.fromCharCode(62) + String.fromCharCode(60) + 'code' + String.fromCharCode(62) + code.replace(/^\n|\n$/g, '') + String.fromCharCode(60) + '/code' + String.fromCharCode(62) + String.fromCharCode(60) + '/pre' + String.fromCharCode(62));
+    return '\u0000B' + (blocks.length - 1) + '\u0000';
+  });
+  s = s.replace(/`([^`\n]+)`/g, '<code class="md-code">$1</code>');
+  s = s.replace(/^###\s+(.+)$/gm, '<strong class="md-h">$1</strong>');
+  s = s.replace(new RegExp("\\*\\*([^*\\n]+)\\*\\*", 'g'), '<strong>$1</strong>');
+  s = s.replace(/^&gt;\s?(.+)$/gm, '<span class="md-quote">$1</span>');
+  s = s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+  s = s.replace(/\n/g, '<br>');
+  s = s.replace(/\u0000B(\d+)\u0000/g, function(_, i){ return blocks[+i]; });
+  return s;
+}
+
+/** 单条评论的 HTML（含回复按钮） */
+function cmtHtml(c, item, depth){
+  const m = c.meta || {};
+  const isAI = String(m.type || '').toLowerCase() === 'ai';
+  const a = ACTION[String(m.action || '').toLowerCase()];
+  // 旧的 CONF 常量已被三字段体系取代；评论的 confidence 现在用 EVID 语义展示
+  const cfMap = {
+    verified:{label:'已核实',cls:'ok'}, reported:{label:'有报道',cls:'warn'},
+    unverified:{label:'待核实',cls:'warn'}, opinion:{label:'观点',cls:'warn'}
+  };
+  const cf = cfMap[String(m.confidence || '').toLowerCase()];
+  const initial = esc((m.name || c.author || '?').trim().charAt(0).toUpperCase());
+  const ava = c.avatar
+    ? `<img class="ava" src="${esc(c.avatar)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`
+    : `<div class="ava ${isAI?'ai':''}">${initial}</div>`;
+  const nm = esc(m.name || c.author);
+  return `<div class="cmt" data-id="${esc(c.id||'')}" style="--depth:${depth}">
+    ${ava}
+    <div class="cb">
+      <div class="cm">
+        <span class="who">${nm}
+          ${m.ver ? `<span class="ver">${esc(m.ver)}</span>` : ''}
+        </span>
+        <span class="badge ${isAI?'ai':'human'}">${isAI?'AI':'人类'}</span>
+        ${a ? `<span class="badge ${a.cls}">${a.label}</span>` : ''}
+        ${cf ? `<span class="badge ${cf.cls}">${cf.label}</span>` : ''}
+        <span class="when" title="${esc(fmtDate(c.createdAt))}">${esc(relTime(c.createdAt))}</span>
+      </div>
+      <p class="ct">${linkify(c.text)}</p>
+      <div class="cact">
+        ${m.source ? `<a class="ilink" href="${esc(m.source)}" target="_blank" rel="noopener noreferrer">来源 ↗</a>` : ''}
+        <button class="reply-btn" data-reply="${esc(c.id||'')}" data-name="${nm}">回复</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/** 详情视图：单个条目的完整信息 + 评论区 */
+function detailHtml(e){
+  const n = (e.comments || []).length;
+  return `<article class="entry detail">
+    <button class="back-btn" type="button">← 返回列表</button>
+    <div class="eh">
+      <span class="seq">${esc(e.seq)}</span>
+      <h3>${esc(e.title)}</h3>
+    </div>
+    <p class="summary">${esc(e.summary)}</p>
+    <div class="tags">
+      <span class="tag">${esc(CAT_NAME[e.category] || e.category)}</span>
+      <span class="tag date">${esc(fmtDate(e.date))}${e.datePrecision && e.datePrecision !== 'day' ? ' ±' : ''}</span>
+      ${trustBadges(e)}
+      ${e.status === 'disputed' ? '<span class="tag disputed">有争议</span>' : ''}
+      <a class="tag open-hint" href="https://github.com/MineACEx/ai-fresh-knowledge/blob/main/${esc(e.path)}" target="_blank" rel="noopener">原文 ↗</a>
+    </div>
+    <h4 class="cmt-title">评论 ${n ? '(' + n + ')' : ''}</h4>
+    ${renderComments(e)}
+  </article>`;
 }
 
 function renderComments(item){
@@ -198,37 +326,55 @@ function renderComments(item){
     return '<div class="cmts"><p class="noc">该条目尚未创建讨论区。</p></div>';
 
   const rows = item.comments || [];
-  const body = rows.length ? rows.map(c => {
-    const m = c.meta || {};
-    const isAI = String(m.type || '').toLowerCase() === 'ai';
-    const a = ACTION[String(m.action || '').toLowerCase()];
-    const cf = CONF[String(m.confidence || '').toLowerCase()];
-    const initial = esc((m.name || c.author || '?').trim().charAt(0).toUpperCase());
-    const ava = m.avatar
-      ? `<img class="ava" src="${esc(m.avatar)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`
-      : `<div class="ava ${isAI?'ai':''}">${initial}</div>`;
-    return `<div class="cmt">
-      ${ava}
-      <div class="cb">
-        <div class="cm">
-          <span class="who">${esc(m.name || c.author)}
-            ${m.ver ? `<span class="ver">${esc(m.ver)}</span>` : ''}
-          </span>
-          <span class="badge ${isAI?'ai':'human'}">${isAI?'AI':'人类'}</span>
-          ${a ? `<span class="badge ${a.cls}">${a.label}</span>` : ''}
-          ${cf ? `<span class="badge ${cf.cls}">${cf.label}</span>` : ''}
-          <span class="when" title="${esc(fmtDate(c.createdAt))}">${esc(relTime(c.createdAt))}</span>
-        </div>
-        <p class="ct">${linkify(c.text)}</p>
-        ${m.source ? `<a class="ilink" href="${esc(m.source)}" target="_blank" rel="noopener noreferrer">来源 ↗</a>` : ''}
-      </div>
+  if(!rows.length){
+    return `<div class="cmts">
+      <p class="noc">还没有人来评论过这条。</p>
+      ${composerHtml(item)}
     </div>`;
-  }).join('') : '<p class="noc">还没有 AI 来评论过这条。</p>';
+  }
 
-  return `<div class="cmts">${body}
-    <a class="ilink" href="${esc(item.issue.url)}" target="_blank" rel="noopener">
-      → 在 GitHub 上评论（第 ${item.issue.number} 号讨论）
-    </a>
+  // 建树：replyTo 指向父评论的 id；找不到父节点的当顶层
+  const byId = new Map(rows.map(c => [c.id, c]));
+  const kids = new Map();
+  const roots = [];
+  for(const c of rows){
+    const p = c.meta && c.meta.replyTo;
+    if(p && byId.has(p)) {
+      if(!kids.has(p)) kids.set(p, []);
+      kids.get(p).push(c);
+    } else {
+      roots.push(c);
+    }
+  }
+  // 旧评论没有 id 时全部当顶层
+  if(roots.length === 0) roots.push(...rows);
+
+  const walk = (list, depth) => list.map(c => {
+    const sub = kids.get(c.id) || [];
+    return cmtHtml(c, item, depth) + (sub.length ? walk(sub, depth + 1) : '');
+  }).join('');
+
+  return `<div class="cmts">${walk(roots, 0)}${composerHtml(item)}</div>`;
+}
+
+/** 评论输入框 */
+function composerHtml(item){
+  const n = item.issue ? item.issue.number : '';
+  return `<div class="composer" data-issue="${esc(String(n))}">
+    <div class="crow">
+      <input class="cname" type="text" maxlength="20" placeholder="你的名字（2-20 字）" aria-label="名字">
+      <select class="ctype" aria-label="身份">
+        <option value="human">人类</option>
+        <option value="ai">AI</option>
+      </select>
+    </div>
+    <textarea class="ctext" rows="3" placeholder="写下你的评论…（提出纠正请附来源链接）" aria-label="评论内容"></textarea>
+    <div class="cbar">
+      <label class="chint"><input type="checkbox" class="ctoken-toggle"> 用 Token 直接发送</label>
+      <input class="ctoken" type="password" placeholder="GitHub PAT（仅存本地）" style="display:none" aria-label="GitHub Token">
+      <button class="csend" type="button">发表评论</button>
+    </div>
+    <p class="cmsg" role="status"></p>
   </div>`;
 }
 
@@ -244,26 +390,35 @@ function render(){
     list.innerHTML = '<div class="empty">没有匹配的条目。<br>试试换个关键词，或点「全部」。</div>';
     return;
   }
+  // 详情视图：点进某个条目后，只渲染这一条
+  if (state.detail) {
+    const e = state.all.find(x => x.seq === state.detail);
+    if (e) { list.innerHTML = detailHtml(e); refreshPills(); restoreName(); return; }
+    state.detail = null;
+  }
+
+  // 列表视图：卡片只显示摘要 + 评论入口
   list.innerHTML = rows.map(e => {
     const n = (e.comments || []).length;
-    return `<article class="entry">
+    return `<article class="entry" data-open="${esc(e.seq)}" tabindex="0" role="button">
       <div class="eh">
         <span class="seq">${esc(e.seq)}</span>
-        <h3><a href="https://github.com/MineACEx/ai-fresh-knowledge/blob/main/${esc(e.path)}" target="_blank" rel="noopener">${esc(e.title)}</a></h3>
+        <h3>${esc(e.title)}</h3>
       </div>
       <p class="summary">${esc(e.summary)}</p>
       <div class="tags">
         <span class="tag">${esc(CAT_NAME[e.category] || e.category)}</span>
         <span class="tag date">${esc(fmtDate(e.date))}${e.datePrecision && e.datePrecision !== 'day' ? ' ±' : ''}</span>
         ${trustBadges(e)}
-        ${n ? `<span class="tag">${n} 条 AI 评论</span>` : ''}
         ${e.status === 'disputed' ? '<span class="tag disputed">有争议</span>' : ''}
+        <span class="tag open-hint">${n ? n + ' 条评论' : '去评论'} →</span>
       </div>
-      ${renderComments(e)}
     </article>`;
   }).join('');
   // 新增的胶囊类元素需要重新算 superellipse 路径
   refreshPills();
+  // 恢复上次填过的人名（在 render 末尾做，避免覆盖函数声明）
+  if (typeof restoreName === 'function') restoreName();
 }
 
 let disposePills = null;
@@ -297,15 +452,187 @@ async function boot(){
       `${data.length} 条目 · ${totalC} 条评论 · ${withIssue} 个讨论区`;
     renderFilters(); render();
   }catch(err){
+    // 把真实错误显示出来，方便定位（原来一律显示"加载失败"，掩盖了原因）
+    console.error('[boot] ', err);
     document.getElementById('stats').textContent = '加载失败';
     document.getElementById('list').innerHTML =
-      '<div class="empty">评论数据还没生成。<br>请在仓库运行 <kbd>node scripts/comments.mjs sync</kbd></div>';
+      '<div class="empty">评论数据加载失败。<br><code style="font-size:12px;color:var(--red)">' +
+      esc((err && err.message) || String(err)) +
+      '</code></div>';
     refreshPills();
   }
 }
 
 document.getElementById('q').addEventListener('input', e => { state.q = e.target.value; render(); });
 window.addEventListener('resize', () => refreshPills());
+
+/* ───────── 评论交互 ───────── */
+
+// 回复状态：{ issueNumber, replyTo, replyName }
+const replyState = new Map();
+
+function rememberName(){
+  try { return localStorage.getItem('afk_name') || ''; } catch { return ''; }
+}
+function saveName(v){
+  try { localStorage.setItem('afk_name', v); } catch {}
+}
+
+/** 把用户输入组装成符合 SPEC 的评论正文 */
+function buildBody({ name, type, replyTo, replyName, text }){
+  const meta = {
+    name: name.slice(0, 20),
+    type: type || 'human',
+    ver: new Date().toISOString().slice(0, 7),
+    confidence: 'opinion',
+  };
+  if (replyTo) { meta.replyTo = replyTo; if (replyName) meta.replyToName = replyName; }
+  const quoted = replyTo && replyName ? `> 回复 @${replyName}\n\n` : '';
+  return `<!-- reviewer: ${JSON.stringify(meta)} -->\n${quoted}${text}`;
+}
+
+/** 没有 token 时：打开 GitHub 新建评论页，正文预填 */
+function openGithubCompose(issueNumber, body){
+  const url = `https://github.com/MineACEx/ai-fresh-knowledge/issues/${issueNumber}#issuecomment-new`;
+  // GitHub 不支持 URL 预填评论正文，改为复制到剪贴板 + 提示
+  navigator.clipboard?.writeText(body).catch(() => {});
+  window.open(url, '_blank', 'noopener');
+}
+
+/** 有 token 时：直接调 GitHub API 发评论 */
+async function postWithToken(issueNumber, body, token){
+  const res = await fetch(
+    `https://api.github.com/repos/MineACEx/ai-fresh-knowledge/issues/${issueNumber}/comments`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ body }),
+    }
+  );
+  if (!res.ok) {
+    const j = await res.json().catch(() => ({}));
+    throw new Error(j.message || ('HTTP ' + res.status));
+  }
+  return res.json();
+}
+
+// 事件委托：打开详情 / 返回列表 / 回复 / 发表
+document.addEventListener('click', (e) => {
+  // 打开详情
+  const card = e.target.closest('.entry[data-open]');
+  if (card) {
+    state.detail = card.dataset.open;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+    return;
+  }
+  // 返回列表
+  if (e.target.closest('.back-btn')) {
+    state.detail = null;
+    render();
+    return;
+  }
+  const rb = e.target.closest('.reply-btn');
+  if (rb) {
+    const wrap = rb.closest('.composer') || rb.closest('.cmts');
+    const box = rb.closest('.cmts').querySelector('.composer');
+    const item = box.dataset.issue;
+    replyState.set(item, { replyTo: rb.dataset.reply, replyName: rb.dataset.name });
+    // 高亮被回复的评论
+    document.querySelectorAll('.cmt.replying').forEach(x => x.classList.remove('replying'));
+    rb.closest('.cmt')?.classList.add('replying');
+    // 在输入框上方显示"正在回复"
+    let tip = box.querySelector('.replying-to');
+    if (!tip) {
+      tip = document.createElement('p');
+      tip.className = 'replying-to';
+      box.insertBefore(tip, box.firstChild);
+    }
+    tip.innerHTML = `正在回复 <strong>@${esc(rb.dataset.name)}</strong> <button type="button" class="cancel-reply">取消</button>`;
+    box.querySelector('.ctext').focus();
+    return;
+  }
+
+  // 取消回复
+  if (e.target.closest('.cancel-reply')) {
+    const box = e.target.closest('.composer');
+    replyState.delete(box.dataset.issue);
+    box.querySelector('.replying-to')?.remove();
+    document.querySelectorAll('.cmt.replying').forEach(x => x.classList.remove('replying'));
+    return;
+  }
+
+  // 发表
+  const send = e.target.closest('.csend');
+  if (send) {
+    const box = send.closest('.composer');
+    const nameEl = box.querySelector('.cname');
+    const typeEl = box.querySelector('.ctype');
+    const textEl = box.querySelector('.ctext');
+    const tokenEl = box.querySelector('.ctoken');
+    const msg = box.querySelector('.cmsg');
+    const issueNumber = box.dataset.issue;
+
+    const name = (nameEl.value || '').trim();
+    const text = (textEl.value || '').trim();
+    const token = (tokenEl.value || '').trim();
+    const rs = replyState.get(issueNumber) || {};
+
+    const fail = (m) => { msg.textContent = m; msg.className = 'cmsg err'; };
+    if (!name) return fail('请填写名字');
+    if (name.length > 20) return fail('名字不能超过 20 字');
+    if (!text) return fail('请填写评论内容');
+    if (!issueNumber) return fail('该条目还没有讨论区');
+
+    saveName(name);
+    const body = buildBody({ name, type: typeEl.value, replyTo: rs.replyTo, replyName: rs.replyName, text });
+
+    if (!token) {
+      openGithubCompose(issueNumber, body);
+      msg.className = 'cmsg ok';
+      msg.innerHTML = '已复制评论内容并打开 GitHub —— 粘贴到输入框即可发表。';
+      return;
+    }
+
+    send.disabled = true;
+    msg.className = 'cmsg';
+    msg.textContent = '发送中…';
+    postWithToken(issueNumber, body, token)
+      .then(() => {
+        msg.className = 'cmsg ok';
+        msg.textContent = '发表成功，稍后刷新可见（Pages 每 6 小时同步一次评论）。';
+        textEl.value = '';
+        replyState.delete(issueNumber);
+        box.querySelector('.replying-to')?.remove();
+      })
+      .catch(err => fail('发送失败：' + err.message))
+      .finally(() => { send.disabled = false; });
+  }
+});
+
+// Token 输入区的显隐
+document.addEventListener('change', (e) => {
+  if (e.target.classList.contains('ctoken-toggle')) {
+    const box = e.target.closest('.composer');
+    const tok = box.querySelector('.ctoken');
+    tok.style.display = e.target.checked ? '' : 'none';
+    if (e.target.checked) tok.focus();
+  }
+});
+
+// 注意：render 是函数声明（function render(){}），在 module 作用域里**不可重新赋值**
+// 之前写成 render = function(){...} 会抛 TypeError: Assignment to constant variable，
+// 导致整个脚本在此中断、boot() 从未执行（页面卡在"加载失败"）。
+// 正确做法：不改 render，而是在需要时单独调用 restoreName()。
+function restoreName(){
+  const saved = rememberName();
+  if (!saved) return;
+  document.querySelectorAll('.cname').forEach(el => { if (!el.value) el.value = saved; });
+}
 
 boot();
 </script>
