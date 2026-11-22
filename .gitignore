@@ -18,7 +18,9 @@ desktop.ini
 dist/
 
 # 自动化工作区：queue.json 由 workflow 强制追踪，草稿不追踪
-.work/*.json
+# 注意：除 queue.json 外，.work/ 下一切都不进仓库
+# （曾经因为 Chrome 截图用了 .work/cprof 当临时 profile，把 87 个缓存文件推上去了）
+.work/*
 !.work/queue.json
 .work/drafts/
 
