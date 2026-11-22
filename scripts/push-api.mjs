@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 // git push 被墙时的绕法：用 GitHub API 一次性提交
 // 用法: node scripts/push-api.mjs "commit message"
+//
+// 关键设计（踩过两次坑后加的）：
+// 1. 先 fetch 并与 origin/main 对齐，避免 BadObjectState
+//    根因：本地 HEAD 与远程分叉时，API 提交的 parent 不在远程历史上
+// 2. 删除必须显式带 sha:null，否则 git diff --name-only 会漏掉
+// 3. 大文件（>1.5MB base64）单独走 blobs，避免单请求超限
 import { execFileSync } from 'node:child_process';
 import { readFile, access } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -9,8 +15,12 @@ const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '
 const REPO = 'MineACEx/ai-fresh-knowledge';
 const BRANCH = 'main';
 const MSG = process.argv[2] || 'chore: sync via API';
+const NO_REBASE = process.argv.includes('--no-rebase');
 const ENV = { ...process.env, HTTPS_PROXY: '', HTTP_PROXY: '', https_proxy: '', http_proxy: '' };
 
+function sh(cmd, args, opts = {}) {
+  return execFileSync(cmd, args, { cwd: ROOT, encoding: 'utf8', env: ENV, ...opts }).trim();
+}
 function api(args, jsonBody) {
   return execFileSync('gh', args, {
     encoding: 'utf8',
@@ -20,13 +30,31 @@ function api(args, jsonBody) {
   }).trim();
 }
 
+// ── 步骤 1：先对齐，避免 BadObjectState ──
+if (!NO_REBASE) {
+  try {
+    sh('git', ['fetch', 'origin', BRANCH]);
+    const ahead = sh('git', ['rev-list', '--count', 'origin/' + BRANCH + '..HEAD']);
+    const behind = sh('git', ['rev-list', '--count', 'HEAD..origin/' + BRANCH]);
+    if (behind !== '0') {
+      console.log('检测到本地落后远程 ' + behind + ' 个提交，先 rebase 对齐…');
+      sh('git', ['rebase', 'origin/' + BRANCH]);
+      console.log('  ✓ rebase 完成');
+    } else {
+      console.log('本地领先 ' + ahead + ' 个提交，无需对齐');
+    }
+  } catch (e) {
+    console.error('对齐失败（继续尝试提交）: ' + String(e.message).split('\n')[0]);
+  }
+}
+
 const headSha = api(['api', 'repos/' + REPO + '/git/ref/heads/' + BRANCH, '--jq', '.object.sha']);
 const headTree = api(['api', 'repos/' + REPO + '/git/commits/' + headSha, '--jq', '.tree.sha']);
 console.log('远端 HEAD ' + headSha.slice(0, 8));
 
-// 用 --name-status 拿到 A/M/D 三类变更；删除必须显式带 sha:null
-const raw = execFileSync('git', ['diff', '--name-status', 'origin/' + BRANCH + '..HEAD'],
-  { cwd: ROOT, encoding: 'utf8' }).split(/\r?\n/).filter(Boolean);
+// ── 步骤 2：用 --name-status 拿到 A/M/D，删除要显式处理 ──
+const raw = sh('git', ['diff', '--name-status', 'origin/' + BRANCH + '..HEAD'])
+  .split(/\r?\n/).filter(Boolean);
 
 if (!raw.length) { console.log('没有待推送文件'); process.exit(0); }
 
@@ -40,14 +68,13 @@ for (const line of raw) {
   const p = m[2].replace(/^"|"$/g, '').replace(/\\"/g, '"');
 
   if (status === 'D') {
-    // 删除：必须在 tree 里显式给出 sha: null
     tree.push({ path: p, mode: '100644', type: 'blob', sha: null });
     del++;
     continue;
   }
 
   const abs = join(ROOT, p);
-  try { await access(abs); } catch { continue; }   // 本地已不存在则跳过
+  try { await access(abs); } catch { continue; }
   const buf = await readFile(abs);
   const b64 = buf.toString('base64');
 
@@ -66,10 +93,14 @@ if (!tree.length) { console.log('无有效变更'); process.exit(0); }
 
 const newTree = api(['api', '-X', 'POST', 'repos/' + REPO + '/git/trees', '--input', '-', '--jq', '.sha'],
   { base_tree: headTree, tree });
-console.log('新 tree ' + newTree.slice(0, 8));
-
 const newCommit = api(['api', '-X', 'POST', 'repos/' + REPO + '/git/commits', '--input', '-', '--jq', '.sha'],
   { message: MSG, tree: newTree, parents: [headSha] });
 api(['api', '-X', 'PATCH', 'repos/' + REPO + '/git/refs/heads/' + BRANCH, '--input', '-', '--jq', '.object.sha'],
   { sha: newCommit, force: false });
 console.log('✓ 已提交到 ' + BRANCH + ' → ' + newCommit.slice(0, 8));
+
+// 本地追上远程，避免下次又分叉
+try {
+  sh('git', ['fetch', 'origin', BRANCH]);
+  console.log('  本地已同步到 ' + sh('git', ['rev-parse', '--short', 'origin/' + BRANCH]));
+} catch { /* 忽略 */ }
